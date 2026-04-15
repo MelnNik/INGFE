@@ -1,0 +1,18 @@
+{
+  "name": "ingfe-skills-marketplace",
+  "description": "Marketplace entry for INGFE planning and execution skills",
+  "owner": {
+    "name": "Nikolai Melnikov"
+  },
+  "plugins": [
+    {
+      "name": "ingfe-skills",
+      "description": "INGFE planning and milestone execution skills",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "Nikolai Melnikov"
+      }
+    }
+  ]
+}

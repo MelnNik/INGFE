@@ -1,0 +1,4 @@
+interface:
+  display_name: "INGFE Plan"
+  short_description: "Plan INGFE project milestones"
+  default_prompt: "Use $ingfe-plan to create or update the project docs and milestone plan."

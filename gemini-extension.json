@@ -1,0 +1,6 @@
+{
+  "name": "ingfe-skills",
+  "description": "INGFE planning and milestone execution skills for coding agents",
+  "version": "0.1.0",
+  "contextFileName": "GEMINI.md"
+}

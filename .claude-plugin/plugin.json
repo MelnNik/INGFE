@@ -1,0 +1,18 @@
+{
+  "name": "ingfe-skills",
+  "description": "INGFE planning and milestone execution skills for Claude Code",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nikolai Melnikov"
+  },
+  "homepage": "https://github.com/nikolaimelnikov/ingfe-skills",
+  "repository": "https://github.com/nikolaimelnikov/ingfe-skills",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "planning",
+    "execution",
+    "milestones",
+    "coding-agents"
+  ]
+}

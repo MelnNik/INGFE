@@ -1,0 +1,19 @@
+{
+  "name": "ingfe-skills",
+  "displayName": "INGFE Skills",
+  "description": "INGFE planning and milestone execution skills",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nikolai Melnikov"
+  },
+  "homepage": "https://github.com/nikolaimelnikov/ingfe-skills",
+  "repository": "https://github.com/nikolaimelnikov/ingfe-skills",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "planning",
+    "execution",
+    "milestones"
+  ],
+  "skills": "./skills/"
+}
