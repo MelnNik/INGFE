@@ -1,13 +1,13 @@
 # Installing INGFE Skills
 
-Replace `https://github.com/nikolaimelnikov/ingfe-skills.git` with your actual repository URL after publishing.
+Repository URL: `https://github.com/MelnNik/INGFE`
 
 ## Codex
 
 Codex native skill discovery can use a symlink to this repo's `skills/` directory:
 
 ```bash
-git clone https://github.com/nikolaimelnikov/ingfe-skills.git ~/.codex/ingfe-skills
+git clone https://github.com/MelnNik/INGFE.git ~/.codex/ingfe-skills
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/ingfe-skills/skills ~/.agents/skills/ingfe
 ```
@@ -52,7 +52,7 @@ This repo includes `gemini-extension.json` and `GEMINI.md`.
 Install from GitHub:
 
 ```bash
-gemini extensions install https://github.com/nikolaimelnikov/ingfe-skills
+gemini extensions install https://github.com/MelnNik/INGFE
 ```
 
 Update later with:
@@ -69,7 +69,7 @@ Add the plugin to global or project `opencode.json`:
 
 ```json
 {
-  "plugin": ["ingfe-skills@git+https://github.com/nikolaimelnikov/ingfe-skills.git"]
+  "plugin": ["ingfe-skills@git+https://github.com/MelnNik/INGFE.git"]
 }
 ```
 
@@ -86,7 +86,7 @@ For agents without native skill loading:
 Example:
 
 ```text
-Fetch https://raw.githubusercontent.com/nikolaimelnikov/ingfe-skills/main/adapters/generic/INGFE_WORKFLOW.md and follow it.
+Fetch https://raw.githubusercontent.com/MelnNik/INGFE/main/adapters/generic/INGFE_WORKFLOW.md and follow it.
 ```
 
 ## Verify

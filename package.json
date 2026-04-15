@@ -4,5 +4,10 @@
   "type": "module",
   "main": ".opencode/plugins/ingfe-skills.js",
   "description": "INGFE planning and milestone execution skills for coding agents",
-  "license": "UNLICENSED"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelnNik/INGFE.git"
+  },
+  "homepage": "https://github.com/MelnNik/INGFE",
+  "license": "MIT"
 }

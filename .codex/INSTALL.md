@@ -3,7 +3,7 @@
 Clone and symlink the canonical skills directory:
 
 ```bash
-git clone https://github.com/nikolaimelnikov/ingfe-skills.git ~/.codex/ingfe-skills
+git clone https://github.com/MelnNik/INGFE.git ~/.codex/ingfe-skills
 mkdir -p ~/.agents/skills
 ln -s ~/.codex/ingfe-skills/skills ~/.agents/skills/ingfe
 ```

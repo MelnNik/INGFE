@@ -80,4 +80,4 @@ Sources:
 - https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md
 - https://github.com/obra/superpowers/blob/main/skills/executing-plans/SKILL.md
 
-Superpowers is MIT licensed. Add your own license file before publishing this repository.
+Superpowers is MIT licensed. This repository is also released under the MIT license.
