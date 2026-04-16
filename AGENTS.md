@@ -25,9 +25,11 @@ python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/i
 
 ## Packaging
 
+- `npx ingfe-skills` installs Codex, Claude Code, and Gemini CLI support in one command.
 - Codex uses `skills/*/SKILL.md` directly through native skill discovery.
-- Claude Code and Cursor use plugin metadata in `.claude-plugin/` and `.cursor-plugin/`.
-- Gemini CLI loads `GEMINI.md` through `gemini-extension.json`.
+- Claude Code uses installed skills plus `/ingfe-plan` and `/ingfe-execute` slash commands; plugin metadata lives in `.claude-plugin/`.
+- Cursor uses plugin metadata in `.cursor-plugin/`.
+- Gemini CLI loads `GEMINI.md` through `gemini-extension.json` and can use `/ingfe:plan` and `/ingfe:execute` custom commands.
 - OpenCode loads `.opencode/plugins/ingfe-skills.js` through `package.json`.
 - Generic agents can use `adapters/generic/INGFE_WORKFLOW.md`.
 

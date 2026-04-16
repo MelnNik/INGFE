@@ -1,0 +1,9 @@
+description = "Create or update INGFE project docs and PLAN.md milestones."
+prompt = """
+INGFE installer-managed Gemini CLI command.
+
+Follow the ingfe-plan workflow. If extension context is loaded, use the installed skills/ingfe-plan/SKILL.md instructions. If not, read ~/.gemini/extensions/ingfe-skills/skills/ingfe-plan/SKILL.md before working.
+
+User request:
+{{args}}
+"""

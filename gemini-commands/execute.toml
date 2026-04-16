@@ -1,0 +1,9 @@
+description = "Implement the earliest incomplete INGFE PLAN.md milestone."
+prompt = """
+INGFE installer-managed Gemini CLI command.
+
+Follow the ingfe-execute workflow. If extension context is loaded, use the installed skills/ingfe-execute/SKILL.md instructions. If not, read ~/.gemini/extensions/ingfe-skills/skills/ingfe-execute/SKILL.md before working.
+
+User request:
+{{args}}
+"""

@@ -1,4 +1,4 @@
 interface:
   display_name: "INGFE Execute"
   short_description: "Execute INGFE plan milestones"
-  default_prompt: "Use $ingfe-execute to implement the earliest incomplete PLAN.md milestone."
+  default_prompt: "Use ingfe-execute to implement the earliest incomplete PLAN.md milestone."

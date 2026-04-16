@@ -3,11 +3,36 @@
   "version": "0.1.0",
   "type": "module",
   "main": ".opencode/plugins/ingfe-skills.js",
+  "bin": {
+    "ingfe-skills": "./bin/ingfe-skills.mjs"
+  },
   "description": "INGFE planning and milestone execution skills for coding agents",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelnNik/INGFE.git"
   },
   "homepage": "https://github.com/MelnNik/INGFE",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "README.md",
+    "adapters/",
+    "bin/",
+    "commands/",
+    "docs/",
+    "gemini-commands/",
+    "gemini-extension.json",
+    "scripts/",
+    "skills/",
+    ".claude-plugin/",
+    ".codex/",
+    ".cursor-plugin/",
+    ".opencode/"
+  ],
+  "scripts": {
+    "validate": "./scripts/validate.sh",
+    "pack:check": "npm pack --dry-run"
+  }
 }

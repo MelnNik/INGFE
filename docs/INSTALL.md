@@ -2,37 +2,57 @@
 
 Repository URL: `https://github.com/MelnNik/INGFE`
 
-## Codex
+## One-command install
 
-Codex native skill discovery can use a symlink to this repo's `skills/` directory:
+After the package is published to npm, install for Codex, Claude Code, and Gemini CLI with:
 
 ```bash
-git clone https://github.com/MelnNik/INGFE.git ~/.codex/ingfe-skills
-mkdir -p ~/.agents/skills
-ln -s ~/.codex/ingfe-skills/skills ~/.agents/skills/ingfe
+npx ingfe-skills
 ```
 
-Then restart Codex.
+This copies skills and commands into stable user directories:
+
+- Codex: `~/.codex/skills/` and `~/.agents/skills/`
+- Claude Code: `~/.claude/skills/` and `~/.claude/commands/`
+- Gemini CLI: `~/.gemini/extensions/ingfe-skills/` and `~/.gemini/commands/ingfe/`
+
+Target only one host with:
+
+```bash
+npx ingfe-skills install --target=claude
+npx ingfe-skills install --target=codex,gemini
+```
 
 From a local clone, run:
 
 ```bash
-./scripts/install.sh codex
+./scripts/install.sh
 ```
 
-If your Codex install still reads `~/.codex/skills`, use:
+## Codex
+
+Codex native skill discovery uses copied skill folders:
 
 ```bash
-./scripts/install.sh codex-legacy
+npx ingfe-skills install --target=codex
 ```
+
+Then restart Codex.
 
 ## Claude Code
 
-This repo includes Claude plugin metadata in `.claude-plugin/`.
+The `npx` installer copies skills into `~/.claude/skills/` and personal slash commands into `~/.claude/commands/`.
 
-After publishing to GitHub, register the plugin or marketplace using the plugin flow supported by your Claude Code version, then install `ingfe-skills`.
+Use:
 
-For direct use without plugin installation, open this repo in Claude Code and ask it to use the native Skill tool with:
+```text
+/ingfe-plan
+/ingfe-execute
+```
+
+This repo also includes Claude plugin metadata in `.claude-plugin/` for plugin-based distribution.
+
+For direct use without installation, open this repo in Claude Code and ask it to use the native Skill tool with:
 
 ```text
 ingfe-plan
@@ -47,7 +67,16 @@ After publishing, install through Cursor's plugin flow for GitHub-hosted plugins
 
 ## Gemini CLI
 
-This repo includes `gemini-extension.json` and `GEMINI.md`.
+The `npx` installer copies the extension into `~/.gemini/extensions/ingfe-skills/` and namespaced custom commands into `~/.gemini/commands/ingfe/`.
+
+Use:
+
+```text
+/ingfe:plan
+/ingfe:execute
+```
+
+This repo also includes `gemini-extension.json` and `GEMINI.md` for GitHub extension installation.
 
 Install from GitHub:
 

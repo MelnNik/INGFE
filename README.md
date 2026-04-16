@@ -26,6 +26,14 @@ docs/
 scripts/
   install.sh
   validate.sh
+bin/
+  ingfe-skills.mjs
+commands/
+  ingfe-plan.md
+  ingfe-execute.md
+gemini-commands/
+  plan.toml
+  execute.toml
 .claude-plugin/
   plugin.json
   marketplace.json
@@ -41,10 +49,16 @@ package.json
 
 See `docs/INSTALL.md` for Codex, Claude Code, Cursor, Gemini CLI, OpenCode, and generic-agent setup.
 
-Quick local Codex install:
+Install Codex, Claude Code, and Gemini CLI with one command after npm publication:
 
 ```bash
-./scripts/install.sh codex
+npx ingfe-skills
+```
+
+From a local clone, run the same installer through the wrapper:
+
+```bash
+./scripts/install.sh
 ```
 
 Quick validation:
@@ -58,13 +72,27 @@ Quick validation:
 Planning request:
 
 ```text
-Use $ingfe-plan to create the project docs and PLAN.md.
+Use ingfe-plan to create the project docs and PLAN.md.
 ```
 
 Execution request:
 
 ```text
-Use $ingfe-execute to work on the earliest incomplete milestone.
+Use ingfe-execute to work on the earliest incomplete milestone.
+```
+
+Claude Code also gets personal slash commands:
+
+```text
+/ingfe-plan
+/ingfe-execute
+```
+
+Gemini CLI also gets namespaced slash commands:
+
+```text
+/ingfe:plan
+/ingfe:execute
 ```
 
 For agents without native skill loading, point the agent at `adapters/generic/INGFE_WORKFLOW.md` and the two files under `skills/`.

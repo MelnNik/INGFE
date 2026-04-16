@@ -1,6 +1,6 @@
 ---
 name: ingfe-plan
-description: Plan INGFE projects from an idea, PRD, or architecture brief into canonical project docs and an executable PLAN.md. Use when creating or updating planning docs, brainstorming product scope or architecture before implementation, converting requirements into milestones, or preparing work for $ingfe-execute. Ensures CLAUDE.md, GEMINI.md, AGENTS.md, docs/PRD.md, docs/ARCHITECTURE.md, and PLAN.md exist and are internally consistent.
+description: Plan INGFE projects from an idea, PRD, or architecture brief into canonical project docs and an executable PLAN.md. Use when creating or updating planning docs, brainstorming product scope or architecture before implementation, converting requirements into milestones, or preparing work for ingfe-execute. Ensures CLAUDE.md, GEMINI.md, AGENTS.md, docs/PRD.md, docs/ARCHITECTURE.md, and PLAN.md exist and are internally consistent.
 ---
 
 # INGFE Plan
@@ -27,13 +27,14 @@ Create and maintain a task checklist for these items:
 
 1. Explore the current project context.
 2. Read existing instructions and docs.
-3. Ensure the required planning files exist.
-4. Brainstorm scope, constraints, and success criteria.
-5. Propose 2-3 approaches when meaningful.
-6. Write or update the required docs.
-7. Write or update `PLAN.md` with executable milestones.
-8. Self-review the docs and plan.
-9. Hand off to `$ingfe-execute`.
+3. Research current external context and technology-specific best practices when implementation choices are involved.
+4. Ensure the required planning files exist.
+5. Brainstorm scope, constraints, and success criteria.
+6. Propose 2-3 approaches when meaningful.
+7. Write or update the required docs.
+8. Write or update `PLAN.md` with executable milestones.
+9. Self-review the docs and plan.
+10. Hand off to `ingfe-execute`.
 
 ## Step 1: Explore Context
 
@@ -46,7 +47,23 @@ Inspect the repository before planning:
 
 If the project is too large for one plan, decompose it into independently shippable milestones or sub-projects before writing tasks.
 
-## Step 2: Ensure Required Files
+## Step 2: Research Current Context
+
+Use web research by default when planning involves specific technologies, frameworks, libraries, cloud services, agent hosts, APIs, security-sensitive flows, or operational practices. Do not rely only on memory for modern tooling decisions.
+
+Research goals:
+
+- Confirm current versions, support status, installation paths, configuration formats, API signatures, security recommendations, deprecations, migration notes, and official best practices.
+- Prefer primary sources: official docs, release notes, standards, package registries, and vendor examples.
+- For implementation patterns, check at least one current official source before committing to architecture or milestone tasks.
+- Encode the researched decisions in `docs/ARCHITECTURE.md` and `PLAN.md` so the executor can implement without repeating the research.
+- Capture relevant source URLs in `docs/ARCHITECTURE.md`, `PLAN.md`, or a short "Research Notes" section when the plan depends on them.
+- When a milestone relies on a specific technology behavior, include the exact constraints the executor must follow, such as package versions, config file paths, command syntax, API choices, security requirements, and validation commands.
+- If web access is unavailable, state that limitation in the assumptions and avoid over-specific claims about current best practices.
+
+Keep research focused. Use it to make the plan correct, not to produce a literature review.
+
+## Step 3: Ensure Required Files
 
 Create missing files at these canonical paths:
 
@@ -70,7 +87,7 @@ Minimum responsibilities:
 - `docs/ARCHITECTURE.md`: tech stack, major modules, data flow, external services, risks, operational constraints, and testing strategy.
 - `PLAN.md`: ordered milestones with status, files, tasks, acceptance criteria, and validations.
 
-## Step 3: Brainstorm Before Planning
+## Step 4: Brainstorm Before Planning
 
 Before finalizing the plan, understand what is being built:
 
@@ -82,7 +99,7 @@ Before finalizing the plan, understand what is being built:
 
 For autonomous planning requests, proceed with clearly labeled assumptions instead of blocking on minor unknowns. Do not proceed past major product or architecture ambiguity.
 
-## Step 4: Write The Plan
+## Step 5: Write The Plan
 
 `PLAN.md` must be executable by an agent that has not seen the prior conversation. Use exact paths, concrete steps, and measurable criteria.
 
@@ -91,7 +108,7 @@ Use this structure:
 ```markdown
 # INGFE Implementation Plan
 
-> Required execution skill: Use $ingfe-execute to implement this plan milestone by milestone.
+> Required execution skill: Use ingfe-execute to implement this plan milestone by milestone.
 > Steps use checkbox syntax for tracking.
 
 **Goal:** [One sentence describing the project outcome]
@@ -160,7 +177,7 @@ Before finishing, review the written files:
 3. Placeholder scan: no vague placeholders or unbounded instructions remain.
 4. Status sanity: incomplete work is not marked `COMPLETE`.
 5. Validation integrity: every milestone has executable validations with expected outcomes.
-6. Handoff clarity: `$ingfe-execute` can start from `PLAN.md` without the conversation history.
+6. Handoff clarity: `ingfe-execute` can start from `PLAN.md` without the conversation history.
 
 Fix issues inline before reporting completion.
 
@@ -171,4 +188,4 @@ End with a concise summary:
 - Docs created or updated
 - Milestones planned
 - Assumptions or decisions still pending
-- The next command/request to execute: `Use $ingfe-execute to work on the earliest incomplete milestone.`
+- The next command/request to execute: `Use ingfe-execute to work on the earliest incomplete milestone.`

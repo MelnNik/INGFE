@@ -22,7 +22,7 @@ Before coding, read:
 - `docs/ARCHITECTURE.md`
 - `PLAN.md`
 
-If any required file is missing, stop and say that `$ingfe-plan` should be used first unless the user explicitly tells you to proceed without it.
+If any required file is missing, stop and say that `ingfe-plan` should be used first unless the user explicitly tells you to proceed without it.
 
 Follow instruction priority:
 
@@ -78,6 +78,8 @@ For each task:
 7. Update `PLAN.md` task checkboxes only after the task is actually complete.
 
 If the plan is wrong but the intended milestone is clear, make the smallest plan correction in `PLAN.md`, then continue. Do not silently drift away from the plan.
+
+If the milestone depends on a technology-specific decision that is missing from `PLAN.md` or contradicts local project evidence, stop and say that `ingfe-plan` should update the plan with the required research unless the user explicitly asks you to resolve that planning gap during execution.
 
 ## Step 4: Validate Completion
 

@@ -1,29 +1,21 @@
 # Installing INGFE Skills for Codex
 
-Clone and symlink the canonical skills directory:
+After the package is published to npm:
 
 ```bash
-git clone https://github.com/MelnNik/INGFE.git ~/.codex/ingfe-skills
-mkdir -p ~/.agents/skills
-ln -s ~/.codex/ingfe-skills/skills ~/.agents/skills/ingfe
+npx ingfe-skills install --target=codex
 ```
-
-Restart Codex so native skill discovery reloads.
 
 From a local clone, run:
 
 ```bash
-./scripts/install.sh codex
+./scripts/install.sh --target=codex
 ```
 
-If your Codex install still reads `~/.codex/skills`, run:
-
-```bash
-./scripts/install.sh codex-legacy
-```
+Restart Codex so native skill discovery reloads.
 
 Verify by starting a new Codex session and asking:
 
 ```text
-Use $ingfe-plan to create project docs and a milestone plan.
+Use ingfe-plan to create project docs and a milestone plan.
 ```
