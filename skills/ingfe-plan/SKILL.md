@@ -7,9 +7,9 @@ description: Plan INGFE projects from an idea, PRD, or architecture brief into c
 
 ## Overview
 
-Turn rough project intent into a concrete, reviewable implementation plan. This skill combines strict skill-use discipline, collaborative brainstorming, and bite-sized implementation planning for the INGFE workflow.
+Turn rough project intent into a concrete, reviewable implementation plan following May 2026 Agentic Engineering Best Practices. This skill shifts from "vibe coding" to structured, observable engineering. It combines strict skill-use discipline, collaborative brainstorming, and DAG-based (Directed Acyclic Graph) milestone planning for the INGFE workflow.
 
-Announce at start: "I'm using the ingfe-plan skill to create the project docs and milestone plan."
+Announce at start: "I'm using the ingfe-plan skill to architect the project docs and milestone plan."
 
 ## Instruction Priority
 
@@ -19,22 +19,22 @@ Follow instructions in this order:
 2. This skill
 3. Default agent behavior
 
-If these conflict, the user and repository instructions win. Keep this skill as the process for planning, not a reason to override explicit project direction.
+If these conflict, the user and repository instructions win.
 
 ## Checklist
 
 Create and maintain a task checklist for these items:
 
 1. Explore the current project context.
-2. Read existing instructions and docs.
-3. Research current external context and technology-specific best practices when implementation choices are involved.
+2. Read existing instructions and docs (Code as Rules).
+3. Research current external context (May 2026+ tooling) and MCP (Model Context Protocol) capabilities.
 4. Ensure the required planning files exist.
 5. Brainstorm scope, constraints, and success criteria.
-6. Propose 2-3 approaches when meaningful.
+6. Propose 2-3 approaches when meaningful, highlighting architectural trade-offs.
 7. Write or update the required docs.
-8. Write or update `PLAN.md` with executable milestones.
-9. Self-review the docs and plan.
-10. Hand off to `ingfe-execute`.
+8. Write or update `PLAN.md` with executable, DAG-structured milestones.
+9. Reflect and Self-review the docs and plan (Plan-Act-Reflect).
+10. Hand off to `ingfe-execute` with explicit HITL (Human-in-the-Loop) review requests for critical decisions.
 
 ## Step 1: Explore Context
 
@@ -45,25 +45,22 @@ Inspect the repository before planning:
 - If this is a git repo, check status and recent commits for current direction.
 - Follow existing project conventions instead of inventing a new structure.
 
-If the project is too large for one plan, decompose it into independently shippable milestones or sub-projects before writing tasks.
+If the project is too large for one plan, decompose it into independently shippable sub-projects before writing tasks.
 
-## Step 2: Research Current Context
+## Step 2: Research Current Context & Capabilities
 
-Use web research by default when planning involves specific technologies, frameworks, libraries, cloud services, agent hosts, APIs, security-sensitive flows, or operational practices. Do not rely only on memory for modern tooling decisions.
+Use web research by default when planning involves specific technologies, frameworks, APIs, or operational practices. 
 
 Research goals:
 
-- Confirm current versions, support status, installation paths, configuration formats, API signatures, security recommendations, deprecations, migration notes, and official best practices.
-- Prefer primary sources: official docs, release notes, standards, package registries, and vendor examples.
-- For implementation patterns, check at least one current official source before committing to architecture or milestone tasks.
+- Confirm current versions, security recommendations, and official best practices as of 2026.
+- Prioritize MCP (Model Context Protocol) tools if the platform supports them for standardized integrations.
 - Encode the researched decisions in `docs/ARCHITECTURE.md` and `PLAN.md` so the executor can implement without repeating the research.
-- Capture relevant source URLs in `docs/ARCHITECTURE.md`, `PLAN.md`, or a short "Research Notes" section when the plan depends on them.
-- When a milestone relies on a specific technology behavior, include the exact constraints the executor must follow, such as package versions, config file paths, command syntax, API choices, security requirements, and validation commands.
-- If web access is unavailable, state that limitation in the assumptions and avoid over-specific claims about current best practices.
+- Capture relevant source URLs in `docs/ARCHITECTURE.md` or `PLAN.md`.
+- When a milestone relies on a specific technology behavior, include the exact constraints the executor must follow.
+- If web access is unavailable, state that limitation explicitly.
 
-Keep research focused. Use it to make the plan correct, not to produce a literature review.
-
-## Step 3: Ensure Required Files
+## Step 3: Ensure Required Files (Code as Rules)
 
 Create missing files at these canonical paths:
 
@@ -74,41 +71,35 @@ Create missing files at these canonical paths:
 - `docs/ARCHITECTURE.md`
 - `PLAN.md`
 
-If lower-case variants exist, read them and preserve useful content, but normalize the canonical files above unless the user explicitly asks for different casing.
-
-Each file must contain useful project-specific content. Do not create empty placeholders. If details are unknown but not blocking, state an explicit assumption. If a missing answer would change the architecture, data model, or acceptance criteria, ask one concise clarifying question before proceeding.
+Each file must contain useful project-specific content. Do not create empty placeholders. If details are unknown, state an explicit assumption or ask the user.
 
 Minimum responsibilities:
 
 - `AGENTS.md`: shared agent instructions, validation commands, coding conventions, and plan/execution workflow.
-- `CLAUDE.md`: Claude-specific notes only where needed; otherwise point to `AGENTS.md`.
-- `GEMINI.md`: Gemini-specific notes only where needed; otherwise point to `AGENTS.md`.
-- `docs/PRD.md`: product goal, target users, scope, non-goals, user stories, success metrics, and acceptance criteria.
-- `docs/ARCHITECTURE.md`: tech stack, major modules, data flow, external services, risks, operational constraints, and testing strategy.
-- `PLAN.md`: ordered milestones with status, files, tasks, acceptance criteria, and validations.
+- `CLAUDE.md` / `GEMINI.md`: Platform-specific notes; otherwise point to `AGENTS.md`.
+- `docs/PRD.md`: product goal, target users, scope, user stories, success metrics, and acceptance criteria.
+- `docs/ARCHITECTURE.md`: tech stack, major modules, data flow, MCP usage, risks, and testing strategy.
+- `PLAN.md`: DAG-structured milestones with status, files, tasks, validations, and dependencies.
 
 ## Step 4: Brainstorm Before Planning
 
 Before finalizing the plan, understand what is being built:
 
+- Focus on system design and architectural judgments over basic syntax.
 - Ask questions one at a time when clarification is required.
-- Prefer multiple-choice questions when they reduce ambiguity.
-- Focus on purpose, constraints, acceptance criteria, risks, and what should not be built.
-- When multiple approaches are plausible, present 2-3 options with trade-offs and a recommendation.
-- For UI-heavy work, offer visual mockups or diagrams only if seeing the options would clarify a decision.
+- Present 2-3 options with trade-offs and a recommendation when multiple approaches are plausible.
+- For autonomous planning requests, proceed with clearly labeled assumptions. Do not proceed past major product or architecture ambiguity without Human-in-the-Loop (HITL) approval.
 
-For autonomous planning requests, proceed with clearly labeled assumptions instead of blocking on minor unknowns. Do not proceed past major product or architecture ambiguity.
+## Step 5: Write The Plan (DAG Milestones)
 
-## Step 5: Write The Plan
-
-`PLAN.md` must be executable by an agent that has not seen the prior conversation. Use exact paths, concrete steps, and measurable criteria.
+`PLAN.md` must be executable by an agent operating autonomously. Use explicit sub-tasks, concrete steps, and measurable criteria. Treat the plan as a state-machine orchestrator.
 
 Use this structure:
 
 ```markdown
 # INGFE Implementation Plan
 
-> Required execution skill: Use ingfe-execute to implement this plan milestone by milestone.
+> Required execution skill: Use ingfe-execute to implement this plan.
 > Steps use checkbox syntax for tracking.
 
 **Goal:** [One sentence describing the project outcome]
@@ -123,37 +114,32 @@ Use this structure:
 
 **Status:** NOT STARTED
 **Goal:** [Specific outcome]
+**Dependencies:** [e.g., None, or 'Milestone X']
 
 **Expected Files:**
 - Create: `path/to/new-file`
 - Modify: `path/to/existing-file`
-- Test: `path/to/test-file`
 
 **Acceptance Criteria:**
 - [ ] [Observable behavior or quality bar]
-- [ ] [Another measurable condition]
 
-**Tasks:**
-- [ ] Step 1: [One concrete action]
-- [ ] Step 2: [One concrete action]
+**Tasks (Plan-Act-Reflect):**
+- [ ] Step 1: [Concrete action using explicit tools/MCP]
+- [ ] Step 2: [Another concrete action]
 
 **Required Validations:**
 - `command to run`
   - Expected: [specific expected result]
 
-**Remaining Risks:**
-- [Concrete risk or "None identified"]
+**Remaining Risks & HITL Triggers:**
+- [Concrete risk, or required human review point]
 ```
 
 Milestone rules:
 
-- Order milestones so the earliest incomplete one is always the next work item.
 - Use statuses exactly: `NOT STARTED`, `IN PROGRESS`, `COMPLETE`.
-- Keep each milestone independently testable.
-- Include exact file paths for every task.
+- Acknowledge dependencies explicitly (DAG structure).
 - Include actual commands and expected results for validations.
-- If a task changes code, include enough implementation detail that the executor does not need to invent the design.
-- Prefer TDD for behavior changes: failing test, verify failure, minimal implementation, verify pass.
 - Keep tasks small enough to complete and verify incrementally.
 
 ## No Placeholders
@@ -161,23 +147,19 @@ Milestone rules:
 Never leave these in docs or plans:
 
 - `TODO`, `TBD`, `later`, `fill in`
-- "Add appropriate error handling" without naming the exact errors and behavior
-- "Write tests" without naming the test file, behavior, and expected assertion
-- "Similar to previous task"
-- References to functions, types, services, or files that are not defined or created in the plan
+- "Add appropriate error handling" without naming the exact errors
+- References to functions or tools that do not exist
 
-When information is unknown, use `Assumption:` with a concrete decision, or `Decision needed:` and stop if the decision blocks a correct plan.
+## Step 6: Reflect and Self-Review
 
-## Self-Review
-
-Before finishing, review the written files:
+Before finishing, review the written files (Plan-Act-Reflect):
 
 1. Coverage: every PRD requirement maps to one or more milestones.
 2. Architecture fit: planned files and data flow match `docs/ARCHITECTURE.md`.
 3. Placeholder scan: no vague placeholders or unbounded instructions remain.
-4. Status sanity: incomplete work is not marked `COMPLETE`.
-5. Validation integrity: every milestone has executable validations with expected outcomes.
-6. Handoff clarity: `ingfe-execute` can start from `PLAN.md` without the conversation history.
+4. Validation integrity: every milestone has executable validations with expected outcomes.
+5. Observability: Ensure trajectory logging or checkpoints are mentioned for execution.
+6. Handoff clarity: `ingfe-execute` can start securely.
 
 Fix issues inline before reporting completion.
 
@@ -186,6 +168,6 @@ Fix issues inline before reporting completion.
 End with a concise summary:
 
 - Docs created or updated
-- Milestones planned
-- Assumptions or decisions still pending
+- DAG Milestones planned
+- HITL checkpoints identified
 - The next command/request to execute: `Use ingfe-execute to work on the earliest incomplete milestone.`

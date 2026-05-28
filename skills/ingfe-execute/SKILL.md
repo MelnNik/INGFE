@@ -1,13 +1,13 @@
 ---
 name: ingfe-execute
-description: Execute INGFE project work from PLAN.md. Use when implementing the earliest incomplete milestone, continuing an IN PROGRESS milestone, validating completed work, or updating PLAN.md after implementation. Requires reading CLAUDE.md, GEMINI.md, AGENTS.md, docs/PRD.md, docs/ARCHITECTURE.md, and PLAN.md before coding, then marking milestones COMPLETE only when every acceptance criterion is satisfied.
+description: Execute INGFE project work from PLAN.md following May 2026 agentic best practices. Use when implementing the earliest incomplete milestone, continuing an IN PROGRESS milestone, validating completed work, or updating PLAN.md after implementation. Requires reading CLAUDE.md, GEMINI.md, AGENTS.md, docs/PRD.md, docs/ARCHITECTURE.md, and PLAN.md before coding, then marking milestones COMPLETE only when every acceptance criterion is satisfied.
 ---
 
 # INGFE Execute
 
 ## Overview
 
-Load the project plan, review it critically, implement the earliest incomplete milestone, run validations, and update `PLAN.md` with evidence. This is the INGFE-scoped equivalent of an execution-plan workflow.
+Execute project work autonomously but securely, employing the "Plan-Act-Reflect" pattern. Load the project plan (DAG), review it critically, implement the earliest incomplete milestone within isolated execution bounds, run strict validations, and update `PLAN.md` with evidence. 
 
 Announce at start: "I'm using the ingfe-execute skill to implement the earliest incomplete milestone."
 
@@ -22,7 +22,7 @@ Before coding, read:
 - `docs/ARCHITECTURE.md`
 - `PLAN.md`
 
-If any required file is missing, stop and say that `ingfe-plan` should be used first unless the user explicitly tells you to proceed without it.
+If any required file is missing, stop and request `ingfe-plan` to run first.
 
 Follow instruction priority:
 
@@ -30,88 +30,83 @@ Follow instruction priority:
 2. This skill
 3. Default agent behavior
 
-## Step 1: Load And Review The Plan
+## Step 1: Load And Review The Plan (Plan Phase)
 
 Find the earliest incomplete milestone in `PLAN.md`:
 
 - A milestone is incomplete if its status is `NOT STARTED` or `IN PROGRESS`.
-- A milestone marked `COMPLETE` is still incomplete if any acceptance criterion is unchecked or contradicted by the code.
-- If multiple milestones are incomplete, choose the first one in file order.
+- Check dependencies explicitly: Ensure prior milestones in the DAG are `COMPLETE`.
+- If a milestone is marked `COMPLETE` but acceptance criteria are unchecked or tests fail, it is incomplete.
 
 Review the milestone before implementation:
 
 - Confirm the goal is clear.
 - Confirm expected files are listed.
 - Confirm acceptance criteria are measurable.
-- Confirm validation commands are present and runnable.
-- Confirm tasks are small enough to execute safely.
-- Compare the milestone against the PRD and architecture docs.
+- Confirm validation commands (tests, linters) are present.
+- Compare against PRD and architecture docs.
 
-If the plan has critical gaps, raise them before coding. If the gap can be resolved from existing docs, update `PLAN.md` and continue. If it requires a product or architecture decision, ask one concise question and stop.
+If the plan has critical gaps or hallucinates tools/capabilities, raise them before coding. If it requires an architectural decision, pause for Human-in-the-Loop (HITL) review.
 
-Before coding, summarize:
+Summarize before coding:
 
-- The milestone goal
-- The files you expect to touch
-- The acceptance criteria
+- Milestone goal
+- Expected files to touch
+- Acceptance criteria
 
-## Step 2: Prepare Execution
+## Step 2: Prepare Execution (Isolation & Security)
 
 If this is a git repo:
 
-- Check the current branch and working tree.
-- Do not overwrite unrelated user changes.
-- If on `main` or `master`, ask before starting implementation unless the user explicitly instructed you to work there.
+- Check the current branch and working tree. 
+- Create isolated branches or workspaces for tasks to prevent state pollution.
+- Zero-Trust Security: Ensure you are not violating `CODEOWNERS` or performing destructive actions outside the sandbox.
+- If on `main` or `master`, DO NOT start implementation without explicit HITL approval.
 
-Create a task checklist from the milestone tasks and validations. Mark the milestone `IN PROGRESS` in `PLAN.md` before changing implementation files.
+Mark the milestone `IN PROGRESS` in `PLAN.md`.
 
-## Step 3: Execute The Milestone
+## Step 3: Execute The Milestone (Act Phase)
 
 For each task:
 
-1. Mark the task in progress in your checklist.
-2. Follow the plan step exactly when it is correct.
+1. Mark task in progress.
+2. Follow the plan exactly. Use explicit MCP (Model Context Protocol) tool calls over hallucinating unstructured shell commands when available.
 3. Keep edits scoped to the milestone.
-4. Use existing project patterns and helper APIs.
-5. Prefer failing test -> implementation -> passing test for behavior changes.
-6. Run the validation named in the task or the closest focused validation.
-7. Update `PLAN.md` task checkboxes only after the task is actually complete.
+4. Prefer failing test -> implementation -> passing test (Immutable Tests validation).
+5. Run the specific validation named in the task.
+6. Update `PLAN.md` task checkboxes ONLY after verifiable completion.
 
-If the plan is wrong but the intended milestone is clear, make the smallest plan correction in `PLAN.md`, then continue. Do not silently drift away from the plan.
+If a task relies on an unavailable external dependency, pause for HITL approval. Do not silently drift away from the plan.
 
-If the milestone depends on a technology-specific decision that is missing from `PLAN.md` or contradicts local project evidence, stop and say that `ingfe-plan` should update the plan with the required research unless the user explicitly asks you to resolve that planning gap during execution.
+## Step 4: Validate & Reflect (Reflect Phase)
 
-## Step 4: Validate Completion
-
-Run every validation required by the milestone. Also run any repository-required checks from `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` that apply to touched code.
+Run every validation required by the milestone. Agents must critique their own output before finalization to reduce hallucinations and silent errors.
 
 A milestone may be marked `COMPLETE` only when all are true:
 
-- Every acceptance criterion is satisfied.
-- Every required validation passed, or a skipped validation has a documented, non-optional blocker.
-- `PLAN.md` task boxes for the milestone accurately reflect reality.
-- No known regression or unresolved blocker remains.
+- Every acceptance criterion is verifiably satisfied via testing.
+- Automated tests/linters pass. Agents must NOT rewrite immutable tests simply to make them pass.
+- `PLAN.md` accurately reflects reality.
+- Trajectory logs (reasoning steps, tool calls) show successful, efficient task execution without regressions.
 
 If these are true, update `PLAN.md`:
 
 - Set `**Status:** COMPLETE`.
 - Check completed acceptance criteria and tasks.
-- Add validation evidence: command, result, and date if the plan has a place for notes.
+- Add evidence: commands run, actual stdout results, and date.
 
-If not complete, leave the milestone `IN PROGRESS` and add a short remaining-work list under the milestone. Do not mark partial work complete.
+If not complete, leave the milestone `IN PROGRESS` and add a "Remaining Work / Reflection" list under the milestone.
 
-## Stop Conditions
+## Stop Conditions (HITL Triggers)
 
 Stop and ask for help when:
 
 - A required dependency or file is missing.
-- A test or validation fails repeatedly after a reasonable fix attempt.
+- A test or validation fails repeatedly after 3 reasonable fix attempts.
 - The plan contradicts the PRD or architecture.
-- The milestone lacks enough detail to implement safely.
-- You would need to overwrite unrelated user changes.
-- You need permission for a destructive command, network install, or main/master implementation.
+- You need permission for a destructive command, network install, modifying secrets, or a main/master commit.
 
-Do not guess through these blockers.
+Do not guess through these blockers. Treat them as essential safety boundaries.
 
 ## Final Report
 
@@ -120,7 +115,5 @@ End with:
 - Milestone worked
 - Files changed
 - Validations run and results
-- Whether `PLAN.md` now says `COMPLETE` or `IN PROGRESS`
-- Remaining work, if any
-
-Keep the report short and evidence-based.
+- `PLAN.md` status (`COMPLETE` or `IN PROGRESS`)
+- Remaining work or necessary human reviews
